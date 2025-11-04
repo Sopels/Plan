@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Plan zajęć - automatyczna rotacja</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="planFrame" src=""></iframe>
+
+  <script>
+    const pdfs = [
+      "https://wl.uni.opole.pl/wp-content/uploads/sites/83/03-07.11.25r.pdf",
+      "https://wl.uni.opole.pl/wp-content/uploads/sites/83/03.11-07.11.2025-2.pdf",
+      "https://wl.uni.opole.pl/wp-content/uploads/sites/83/03.11-07.11.2025-3.pdf",
+      "https://wl.uni.opole.pl/wp-content/uploads/sites/83/03-07.11.25-5.pdf",
+      "https://wl.uni.opole.pl/wp-content/uploads/sites/83/03-07.11.25-4.pdf",
+      "https://wl.uni.opole.pl/wp-content/uploads/sites/83/03-07.11.25-3.pdf"
+    ];
+
+    let index = 0;
+    const frame = document.getElementById("planFrame");
+
+    function rotatePDF() {
+      frame.src = pdfs[index] + "#toolbar=0";
+      index = (index + 1) % pdfs.length;
+    }
+
+    rotatePDF();
+    setInterval(rotatePDF, 30000);
+  </script>
+</body>
+</html>
