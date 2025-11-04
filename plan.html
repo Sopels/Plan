@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plan zajęć - automatyczna rotacja</title>
   <style>
     body {
@@ -33,11 +34,16 @@
     const frame = document.getElementById("planFrame");
 
     function rotatePDF() {
-      frame.src = pdfs[index] + "#toolbar=0";
-      index = (index + 1) % pdfs.length;
+      // Sprawdzamy, czy iframe istnieje przed próbą zmiany jego src
+      if (frame) {
+        frame.src = pdfs[index];
+        index = (index + 1) % pdfs.length;
+      }
     }
 
+    // Załaduj pierwszy PDF od razu
     rotatePDF();
+    // Zmień PDF co 30 sekund
     setInterval(rotatePDF, 30000);
   </script>
 </body>
